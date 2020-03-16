@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'idea'
 }
 
 group 'com.findwise.searchengine'
@@ -10,6 +11,15 @@ targetCompatibility = 1.11
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(" "),
+                'Main-Class': 'com.findwise.Application'
+        )
+    }
 }
 
 dependencies {
